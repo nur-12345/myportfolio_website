@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nupur Shivani | Data Science & ML Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0a84ff;
+            --secondary-color: #34c759;
+            --accent-color: #ff9500;
+            --text-dark: #1d1d1f;
+            --text-light: #86868b;
+            --bg-dark: #000;
+            --bg-light: #fff;
+            --card-bg-dark: #1c1c1e;
+            --card-bg-light: #f5f5f7;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        [data-theme="dark"] {
+            --text-dark: #f5f5f7;
+            --text-light: #86868b;
+            --bg-dark: #000;
+            --bg-light: #1c1c1e;
+            --card-bg-dark: #2c2c2e;
+            --card-bg-light: #1c1c1e;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--bg-light) 0%, #fafafa 100%);
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 100%);
+        }
+
+        /* Fixed Navigation - Dark theme text color fix */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] nav {
+            background: rgba(0,0,0,0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-dark); /* Always use text-dark variable */
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        [data-theme="dark"] .nav-links a {
+            color: var(--text-dark); /* Dark theme में भी सफेद रंग */
+        }
+
+        .nav-links a:hover {
+            background: rgba(10,132,255,0.1);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: rotate(30deg) scale(1.1);
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(10,132,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(52,199,89,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255,149,0,0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(30px, -50px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-content .subtitle {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: var(--text-dark);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .contact-item {
+            background: rgba(28,28,30,0.9);
+            color: var(--text-light);
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(10,132,255,0.3);
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        /* Skills Grid Styles */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg-light);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .skill-category {
+            background: var(--card-bg-dark);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(10,132,255,0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Enhanced Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+        }
+
+        /* Projects Grid - 5 Projects Layout */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background: var(--card-bg-light);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        [data-theme="dark"] .project-card {
+            background: var(--card-bg-dark);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-1);
+            z-index: 2;
+        }
+
+        .project-card:nth-child(1)::before { background: var(--gradient-1); }
+        .project-card:nth-child(2)::before { background: var(--gradient-2); }
+        .project-card:nth-child(3)::before { background: var(--gradient-3); }
+        .project-card:nth-child(4)::before { background: var(--gradient-4); }
+        .project-card:nth-child(5)::before { background: var(--gradient-5); }
+
+        .project-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.3);
+        }
+
+        .project-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        [data-theme="dark"] .project-header {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .project-title {
+            flex: 1;
+        }
+
+        .project-title h3 {
+            color: var(--text-dark);
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        [data-theme="dark"] .project-title h3 {
+            color: var(--text-light);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 1.2rem;
+            background: rgba(10,132,255,0.05);
+        }
+
+        .tech-tag, .tech-badge {
+            padding: 0.4rem 1rem;
+            background: rgba(10,132,255,0.15);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover, .tech-badge:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-details {
+            margin-bottom: 2rem;
+        }
+
+        .project-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-details li {
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-details li::before {
+            content: '▸';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .project-highlights {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .project-highlights li {
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            position: relative;
+            list-style: none;
+        }
+
+        .project-highlights li::before {
+            content: '▸';
+            color: var(--primary-color);
+            position: absolute;
+            left: -1.5rem;
+            font-weight: bold;
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(10,132,255,0.05);
+            border-radius: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+        }
+
+        .project-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(10,132,255,0.3);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            cursor: pointer;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 10px 20px rgba(10,132,255,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(10,132,255,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Enhanced Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .edu-card {
+            background: var(--card-bg-light);
+            padding: 3rem;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid var(--primary-color);
+        }
+
+        [data-theme="dark"] .edu-card {
+            background: var(--card-bg-dark);
+        }
+
+        .edu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .edu-degree {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .edu-college {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Enhanced Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .achievement-card {
+            background: var(--card-bg-light);
+            padding: 2.5rem;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .achievement-card {
+            background: var(--card-bg-dark);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .achievement-card i {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-top: 5rem;
+        }
+
+        [data-theme="dark"] footer {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .footer-links a {
+            color: var(--text-dark);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .section h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Nupur Shivani</div>
+            <div class="nav-links">
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+        <div class="hero-content">
+            <h1>Nupur Shivani</h1>
+            <p class="subtitle">Data Science & ML Engineer | AI Specialist | Full-Stack Developer | DevOps Expert</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+91-7368016899</span>
+                </div>
+                <a href="mailto:nupurshivani23@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>nupurshivani23@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/nupur-shivani-150b96262/" target="_blank" class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/nur-12345" target="_blank" class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <a href="https://leetcode.com/u/Nupur_shivani/" target="_blank" class="contact-item">
+                    <i class="fas fa-code"></i>
+                    <span>LeetCode</span>
+                </a>
+                <a href="https://www.hackerrank.com/profile/nupurshivani23" target="_blank" class="contact-item">
+                    <i class="fab fa-hackerrank"></i>
+                    <span>HackerRank</span>
+                </a>
+                <a href="https://www.geeksforgeeks.org/profile/nupurshivani" target="_blank" class="contact-item">
+                    <i class="fas fa-brain"></i>
+                    <span>GeeksforGeeks</span>
+                </a>
+                <a href="https://drive.google.com/file/d/1a6LfbEmf1ErP0t8m-0-L40gJGSUDJePs/view" target="_blank" class="contact-item">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Resume</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section fade-in" id="skills">
+        <h2>Core Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fab fa-python"></i> Python & ML</h3>
+                <div class="skills-list">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Scikit-Learn</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">Transformers</span>
+                    <span class="skill-tag">RAG</span>
+                    <span class="skill-tag">LLM Models</span>
+                    <span class="skill-tag">OpenCV</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-database"></i> Databases & DevOps</h3>
+                <div class="skills-list">
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">Chroma DB</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">Terraform</span>
+                    <span class="skill-tag">Ansible</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Full Stack & Others</h3>
+                <div class="skills-list">
+                    <span class="skill-tag">MERN Stack</span>
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">OOPS</span>
+                    <span class="skill-tag">Data Structures</span>
+                    <span class="skill-tag">Algorithms</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Streamlit</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - 5 Projects -->
+    <section class="section fade-in" id="projects">
+        <h2>Notable Projects</h2>
+        <p class="section-subtitle">A selection of impactful projects demonstrating architectural expertise, scalability considerations, and business value delivery.</p>
+        
+        <div class="projects-grid">
+            <!-- Project 1: AI Telecalling Platform -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    
+                    <div class="project-title">
+                        <h3>AI-Powered Telecalling Agent</h3>
+                    </div>
+                </div>
+                
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Twilio</span>
+                    <span class="tech-tag">Vapi AI</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-details">
+                        <ul>
+                            <li>Developed autonomous outbound calling system for share market services</li>
+                            <li>Reduced manual effort by 80% through intelligent automation</li>
+                            <li>Implemented conversation analytics for continuous optimization</li>
+                            <li>Achieved 15-20% customer acquisition improvement</li>
+                            <li>Designed for horizontal scaling to handle 10K+ concurrent calls</li>
+                            <li>Achieved 99.5% uptime with comprehensive monitoring</li>
+                        </ul>
+                    </div>
+                    
+                  
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nur-12345/AI_Calling_Agent" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                     
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Healthcare Chatbot -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-comments-medical"></i>
+                    </div>
+                    
+                    <div class="project-title">
+                        <h3>Healthcare Chatbot with RAG</h3>
+                    </div>
+                </div>
+                
+                <div class="project-tech">
+                    <span class="tech-tag">RAG Architecture</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">BERT</span>
+                    <span class="tech-tag">Chroma DB</span>
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-details">
+                        <ul>
+                            <li>AI Doctor Appointment system handling 1000+ bookings</li>
+                            <li>500+ concurrent queries at 200ms response time</li>
+                            <li>95%+ recall rate with toxicity detection</li>
+                            <li>Containerized microservices with multi-stage Docker builds</li>
+                            <li>Optimized retrieval performance with vector similarity search</li>
+                            <li>Achieved 99.2% uptime with comprehensive monitoring</li>
+                        </ul>
+                    </div>
+                    
+                  
+                    
+                    <div class="project-links">
+                        <a href="http://github.com/nur-12345/Doctor_Appointment_ChatBot" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Enterprise Chat Platform -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    
+                    <div class="project-title">
+                        <h3>Wanderlust-The-Ultimate-DevOps-Integrated-MERN-Travel-Blog</h3>
+                    </div>
+                </div>
+                
+                <div class="project-tech">
+                    <span class="tech-tag">MERN Stack</span>
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">Jenkins</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">WebSocket</span>
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-details">
+                        <ul>
+                            <li>Scalable chat application with 70% reduced deployment time</li>
+                            <li>Designed microservices architecture with API gateway</li>
+                            <li>99.9% uptime using Kubernetes orchestration</li>
+                            <li>Automated CI/CD pipeline with Jenkins</li>
+                            <li>Real-time monitoring with Grafana & Prometheus</li>
+                            <li>Developed responsive frontend with modern React patterns</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nur-12345/Wanderlust-The-Ultimate-DevOps-Integrated-MERN-Travel-Blog" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: CNN Cat & Dog Classification -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    
+                    <div class="project-title">
+                        <h3>CNN Cat & Dog Classification</h3>
+                    </div>
+                </div>
+                
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TensorFlow/Keras</span>
+                    <span class="tech-tag">CNN</span>
+                    <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Matplotlib</span>
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-details">
+                        <ul>
+                            <li>CNN-based binary image classification with 95%+ accuracy</li>
+                            <li>Interactive Streamlit web app for training and prediction</li>
+                            <li>Real-time training accuracy and loss visualization</li>
+                            <li>Confidence-based safe prediction output system</li>
+                            <li>Modular pipeline with separate training and demo scripts</li>
+                            <li>End-to-end ML workflow demonstration</li>
+                        </ul>
+                    </div>
+                    
+                  
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nur-12345/CNN-Cat-Dog-Image-Classification" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                     
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Virtual Try-On System -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    
+                    <div class="project-title">
+                        <h3>Virtual Try-On (VITON) System</h3>
+                    </div>
+                </div>
+                
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">Deep Learning</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">CNN</span>
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-details">
+                        <ul>
+                            <li>AI-based virtual clothing try-on with realistic results</li>
+                            <li>Human pose estimation and body alignment for perfect fitting</li>
+                            <li>Advanced image transformation and garment warping algorithms</li>
+                            <li>Reduces dependency on physical trials in online shopping</li>
+                            <li>Real-time processing and high-quality visualization</li>
+                            <li>Computer vision techniques for realistic garment fitting</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nur-12345/Viton-Project" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section fade-in" id="education">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="edu-card">
+                <div class="edu-degree">Master of Computer Application (MCA)</div>
+                <div class="edu-college">Lakshmi Narain College of Technology</div>
+                <div class="edu-duration">October 2022 - May 2024</div>
+                <div class="edu-grade"><strong>CGPA: 7.90/10</strong></div>
+                <div class="edu-details">Specialized in Advanced Machine Learning, Cloud Computing, and Big Data Analytics</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-degree">Bachelor of Computer Application (BCA)</div>
+                <div class="edu-college">Bhupendra Narayan Mandal University</div>
+                <div class="edu-duration">July 2018 - May 2021</div>
+                <div class="edu-grade"><strong>Percentage: 80.38%</strong></div>
+                <div class="edu-details">Focus on Software Development, Database Management, and Web Technologies</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="section fade-in" id="achievements">
+        <h2>Achievements & Certifications</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <i class="fab fa-leetcode"></i>
+                <h3>LeetCode</h3>
+                <p>Active participant in coding challenges</p>
+                <a href="https://leetcode.com/u/Nupur_shivani/" target="_blank" class="btn btn-primary">View Profile</a>
+            </div>
+            <div class="achievement-card">
+                <i class="fab fa-hackerrank"></i>
+                <h3>HackerRank</h3>
+                <p>5 Stars in SQL | 4 Stars in Python</p>
+                <a href="https://www.hackerrank.com/profile/nupurshivani23" target="_blank" class="btn btn-primary">View Profile</a>
+            </div>
+            <div class="achievement-card">
+                <i class="fas fa-brain"></i>
+                <h3>GeeksforGeeks</h3>
+                <p>Contributed 50+ problem solutions</p>
+                <a href="https://www.geeksforgeeks.org/profile/nupurshivani" target="_blank" class="btn btn-primary">View Profile</a>
+            </div>
+            <div class="achievement-card">
+                <i class="fab fa-aws"></i>
+                <h3>AWS Certified</h3>
+                <p>Cloud Practitioner Certification</p>
+                <a href="https://drive.google.com/file/d/1ubKH84vyrfBHj_2Exl4oi-tfL-ynxtCG/view" target="_blank" class="btn btn-primary">View Certificate</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <h3>Let's Connect & Build Something Amazing!</h3>
+        <div class="footer-links">
+            <a href="mailto:nupurshivani23@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://www.linkedin.com/in/nupur-shivani-150b96262/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/nur-12345" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://leetcode.com/u/Nupur_shivani/" target="_blank"><i class="fas fa-code"></i> LeetCode</a>
+        </div>
+        <p>&copy; 2026 Nupur Shivani. Built with ❤️ for Data Science & AI Innovation.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">📞 +91-7368016899 | 📍 Madhya Pradesh, India</p>
+    </footer>
+
+    <script>
+        // Enhanced Theme Toggle
+        const themeToggle = document.querySelector('.theme-toggle i');
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            themeToggle.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', newTheme);
+            
+            // Add animation effect
+            themeToggle.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                themeToggle.style.transform = 'rotate(0deg)';
+            }, 300);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        themeToggle.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+        // Enhanced Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Add staggered animation for cards
+                    if (entry.target.classList.contains('project-card') || 
+                        entry.target.classList.contains('achievement-card') ||
+                        entry.target.classList.contains('edu-card')) {
+                        entry.target.style.transitionDelay = Math.random() * 0.3 + 's';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            });
+        });
+
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255,255,255,0.98)';
+                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                if (document.body.getAttribute('data-theme') === 'dark') {
+                    nav.style.background = 'rgba(0,0,0,0.98)';
+                }
+            } else {
+                nav.style.background = 'rgba(255,255,255,0.95)';
+                nav.style.boxShadow = 'none';
+                if (document.body.getAttribute('data-theme') === 'dark') {
+                    nav.style.background = 'rgba(0,0,0,0.95)';
+                }
+            }
+        });
+
+        // Add hover effects to skill tags
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                tag.style.transform = 'translateY(-5px) scale(1.1)';
+            });
+            tag.addEventListener('mouseleave', () => {
+                tag.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Console greeting
+        console.log('%c👋 Hello! Welcome to Nupur Shivani\'s Portfolio', 'color: #0a84ff; font-size: 16px; font-weight: bold;');
+        console.log('%c🚀 Data Science & ML Engineer | AI Specialist', 'color: #34c759; font-size: 14px;');
+        console.log('%c💡 Built with pure HTML, CSS & JavaScript', 'color: #ff9500; font-size: 12px;');
+    </script>
+</body>
+</html>
+</html>
